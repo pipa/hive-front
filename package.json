@@ -1,0 +1,9 @@
+{
+  "name": "front",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "Luis Matute <luis.matute@me.com>",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
