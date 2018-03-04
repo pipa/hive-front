@@ -1,4 +1,4 @@
-FROM node:9.7.1
+FROM node:9.7.1-alpine
 
 # Create directory and change to it
 WORKDIR /webroot/default/
