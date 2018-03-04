@@ -9,7 +9,7 @@ http.createServer(function (req, res) {
   console.log(123);
 
   // print out Hello World
-  res.end('Im the front!\n');
+  res.end('Im the front 2!\n');
 
 // use port 9999
 }).listen(9999);
