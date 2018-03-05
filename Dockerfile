@@ -36,7 +36,7 @@ ADD package.json ./
 RUN npm i --production
 
 # add application files
-ADD . ${WEBROOT}
+ADD . ./
 
 # expose the port
 EXPOSE ${PORT}
