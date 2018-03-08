@@ -1,17 +1,44 @@
 // Deps ==========================================
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path');
+const webpack = require('webpack');
 
 // Export Config =================================
 module.exports = {
+  devtool: 'eval',
+  context: resolve(__dirname, 'src'),
+  devServer: {
+    port: 9999,
+    hot: true,
+    // noInfo: true
+  },
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      './index.js'
+    ],
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'redux',
+      'redux-saga',
+    ]
+  },
+  output: {
+    path: resolve(__dirname, 'dist'),
+    filename: '[name].js',
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/static/',
+  },
   module: {
     rules: [
       // ES6
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        include: resolve(__dirname, 'src/'),
+        loader: "babel-loader"
       },
       // CSS Modules
       {
@@ -31,9 +58,33 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: "./public/index.html",
-      filename: "./index.html"
-    })
-  ]
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"development"',
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  performance: {
+    hints: "warning",
+    assetFilter: assetFilename => !(/vendor|(\.map)$/.test(assetFilename))
+  },
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          minSize: 1,
+          chunks: "all"
+        }
+      }
+    }
+  },
+  resolve: {
+    modules: [
+      resolve('./src'),
+      resolve('./node_modules'),
+    ],
+  }
 };

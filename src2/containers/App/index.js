@@ -8,7 +8,7 @@ console.log(styles);
 const App = () => {
   return (
     <div>
-      <p className={styles['test']}>React here!</p>
+      <p className={styles['test']}>Luis here!</p>
     </div>
   );
 };
