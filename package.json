@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Node.js on Docker",
   "author": "Luis Matute <luis.matute@me.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
+    "start": "node_modules/.bin/webpack-dev-server --host 0.0.0.0 --mode development",
     "dev": "node_modules/.bin/webpack --mode development",
     "test": "node_modules/.bin/webpack --mode development",
     "build": "node_modules/.bin/webpack --mode production"
@@ -40,9 +40,7 @@
         "env",
         {
           "targets": {
-            "browsers": [
-              "last 2 versions"
-            ]
+            "browsers": ["last 2 versions"]
           }
         }
       ],

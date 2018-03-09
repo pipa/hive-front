@@ -5,16 +5,20 @@ const webpack = require('webpack');
 // Export Config =================================
 module.exports = {
   devtool: 'eval',
-  context: resolve(__dirname, 'src'),
+  // context: resolve(__dirname, 'src'),
   devServer: {
+    contentBase: resolve(__dirname),
     port: 9999,
     hot: true,
+    watchOptions: {
+      poll: 500
+    }
     // noInfo: true
   },
   entry: {
     app: [
       'react-hot-loader/patch',
-      './index.js'
+      './src/index.js'
     ],
     vendor: [
       'react',
