@@ -10,7 +10,7 @@
     "test": "node_modules/.bin/webpack --mode development",
     "build": "node_modules/.bin/webpack --mode production"
   },
-  "devDependencies": {
+  "dependencies": {
     "babel-core": "6.26.0",
     "babel-loader": "7.1.4",
     "babel-preset-env": "1.6.1",
@@ -25,9 +25,7 @@
     "wavy": "1.0.4",
     "webpack": "4.1.1",
     "webpack-cli": "2.0.10",
-    "webpack-dev-server": "3.1.0"
-  },
-  "dependencies": {
+    "webpack-dev-server": "3.1.0",
     "babel-polyfill": "6.26.0",
     "babel-preset-stage-0": "^6.24.1",
     "react-redux": "5.0.7",
