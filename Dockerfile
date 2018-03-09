@@ -9,6 +9,7 @@ ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 9.7.1
 ENV NVM_VERSION 0.33.8
 ENV PORT 9999
+ENV NODE_ENV production
 
 # install nginx
 RUN yum update; yum clean all
@@ -24,16 +25,14 @@ RUN curl --silent --location https://rpm.nodesource.com/setup_9.x | bash -
 RUN yum -y install nodejs; yum clean all
 RUN yum install gcc-c++ openssl-devel make; yum clean all
 
-# install pm2 *globally* so we can run our application
-RUN npm i -g pm2
+# add our package.json and install *before* adding our application files
+WORKDIR /tmp
+COPY package.json /tmp/
+RUN npm install
 
 # set the work directory
-RUN mkdir -p ${WEBROOT}
 WORKDIR ${WEBROOT}
-
-# add our package.json and install *before* adding our application files
-ADD package.json ./
-RUN npm i --production
+RUN cp -a /tmp/node_modules ${WEBROOT}
 
 # add application files
 ADD . ./
@@ -42,5 +41,5 @@ ADD . ./
 EXPOSE ${PORT}
 
 # run the pm2 start command with configuration file.
-CMD ["pm2-runtime", "--json", "pm2.config.js", "--only", "front"]
+# CMD ["pm2-runtime", "--json", "pm2.config.js", "--only", "front"]
 # ç'est fini!
