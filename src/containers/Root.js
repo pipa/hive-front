@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Root = () => (
-  <div>Hello lm!</div>
+  <div>Hello josue!</div>
 );
 
 export default Root;
