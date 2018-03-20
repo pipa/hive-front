@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import configureStore from 'store/configureStore';
-
 import Root from 'containers/Root';
 
 const store = configureStore();

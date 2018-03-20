@@ -11,14 +11,14 @@ module.exports = {
     port: 9999,
     hot: true,
     watchOptions: {
-      poll: 500
-    }
+      poll: 500,
+    },
     // noInfo: true
   },
   entry: {
     app: [
       'react-hot-loader/patch',
-      './src/index.js'
+      './src/index.jsx',
     ],
     vendor: [
       'react',
@@ -27,7 +27,7 @@ module.exports = {
       'react-router',
       'redux',
       'redux-saga',
-    ]
+    ],
   },
   output: {
     path: resolve(__dirname, 'dist'),
@@ -37,39 +37,48 @@ module.exports = {
   },
   module: {
     rules: [
+      // ES Lint
+      {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
       // ES6
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         include: resolve(__dirname, 'src/'),
-        loader: "babel-loader"
+        loader: 'babel-loader',
       },
       // CSS Modules
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader'],
       },
       // HTML
       {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
-      }
-    ]
+            loader: 'html-loader',
+            options: { minimize: true },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
+      // "development" will need to escape doubled quotes, read:
+      // https://stackoverflow.com/questions/30835213/react-from-npm-cannot-be-used-on-the-client-because-development-is-not-defined
       'process.env.NODE_ENV': '"development"',
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
   performance: {
-    hints: "warning",
-    assetFilter: assetFilename => !(/vendor|(\.map)$/.test(assetFilename))
+    hints: 'warning',
+    assetFilter: assetFilename => !(/vendor|(\.map)$/.test(assetFilename)),
   },
   optimization: {
     minimize: true,
@@ -78,17 +87,18 @@ module.exports = {
         default: false,
         commons: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
+          name: 'vendor',
           minSize: 1,
-          chunks: "all"
-        }
-      }
-    }
+          chunks: 'all',
+        },
+      },
+    },
   },
   resolve: {
+    extensions: ['.js', '.jsx'],
     modules: [
       resolve('./src'),
       resolve('./node_modules'),
     ],
-  }
+  },
 };

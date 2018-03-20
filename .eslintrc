@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+  ],
+  "env": {
+    "browser": true,
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true,
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    // Ensure consistent use of file extension within the import path
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+    "import/extensions": "off",
+
+    // ensure imports point to files/modules that can be resolved
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md
+    "import/no-unresolved": "off",
+
+    // require trailing commas in multiline object literals
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "ignore",
+    }],
+  },
+}
