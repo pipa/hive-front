@@ -38,6 +38,6 @@ ADD . ./
 # expose the port
 EXPOSE ${PORT}
 
-RUN npm start
+#RUN npm start
 
 # ç'est fini!
