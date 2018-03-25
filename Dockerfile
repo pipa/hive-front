@@ -8,7 +8,7 @@ MAINTAINER Luis Matute
 # set environment variables
 ENV WEBROOT /webroot/default
 ENV PORT 9999
-ENV NODE_ENV production
+# ENV NODE_ENV production
 
 # install nginx
 RUN yum update; yum clean all
@@ -38,6 +38,6 @@ ADD . ./
 # expose the port
 EXPOSE ${PORT}
 
-RUN npm start
+# RUN npm start
 
 # ç'est fini!

@@ -1,6 +1,7 @@
 // Deps ==========================================
 const { resolve } = require('path');
 const webpack = require('webpack');
+// const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 // Export Config =================================
 module.exports = {
@@ -75,6 +76,11 @@ module.exports = {
       'process.env.NODE_ENV': '"development"',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    // new StyleLintPlugin({
+    //   configFile: resolve(__dirname, '.stylelintrc'),
+    //   context: 'src',
+    //   files: ['**/*.s?(a|c)ss'],
+    // }),
   ],
   performance: {
     hints: 'warning',
